@@ -25,6 +25,7 @@ class PieChartView @JvmOverloads constructor(
     private var sliceColors: IntArray = intArrayOf(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
     private var rectF: RectF? = null
     private var dataPoints: FloatArray = floatArrayOf()
+    private var centerRadius = 0.8f
 
     init {
         slicePaint.isAntiAlias = true
@@ -67,11 +68,16 @@ class PieChartView @JvmOverloads constructor(
         val centerY = (measuredHeight / 2).toFloat()
         val radius = Math.min(centerX, centerY)
 
-        canvas!!.drawCircle(centerX, centerY, radius - 70, centerPaint)
+        canvas!!.drawCircle(centerX, centerY, radius * centerRadius, centerPaint)
 
     }
 
     fun getTotal(): Float = dataPoints.sum()
+
+    fun setCenterRadius(radius: Float) {
+        centerRadius = radius
+        invalidateAndRequestLayout()
+    }
 
     fun setDataPoints(data: FloatArray) {
         dataPoints = data

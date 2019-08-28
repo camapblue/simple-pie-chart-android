@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
                 R.color.materialRed700,
                 R.color.materialPink600,
                 R.color.materialRed400))
+        pieChart.setCenterRadius(0.5f)
 
         btnModify.setOnClickListener {
             pieChart.setCenterColor(R.color.white)
